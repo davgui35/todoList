@@ -53,7 +53,7 @@ class BootstrapForm
         switch ($type) {
             case TYPE_TEXTAREA:
                 $rows = $options['rows'] ?? 3;
-                $input .= '<textarea class="' . FORM_CONTROL . '" name="' . $idName . '" id="' . $idName . '" rows="' . $rows . '"></textarea>';
+                $input .= '<textarea class="' . FORM_CONTROL . '" name="' . $name . '" id="' . $idName . '" rows="' . $rows . '"></textarea>';
                 break;
             case TYPE_CHECKBOX:
                 $input .= '<input class="form-check-input" type="' . TYPE_CHECKBOX . '" id="' . $idName . '">';
@@ -62,7 +62,7 @@ class BootstrapForm
                 if ($type !== TYPE_PASSWORD) {
                     $this->handleValue($name, $options);
                 }
-                $input .= '<input type="' . $type . '" name="' . $idName . '" class="' . FORM_CONTROL . ' ' . $class . ' " id="' . $idName . '" ' . $this->htmlAttributs . '>';
+                $input .= '<input type="' . $type . '" name="' . $name . '" class="' . FORM_CONTROL . ' ' . $class . ' " id="' . $idName . '" ' . $this->htmlAttributs . '>';
                 break;
         }
         $input .= '</div>';
