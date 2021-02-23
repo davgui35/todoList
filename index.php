@@ -23,7 +23,7 @@ echo $html->startMain();
 </div>
 
 <div class="container">
-    <?php if (isset($_POST)) {
+    <?php if (isset($_POST['title']) && isset($_POST['content'])) {
         $card = new BootstrapCard();
         echo $card->addCardHtml($_POST['title'], $_POST['content']);
     }
