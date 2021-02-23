@@ -51,6 +51,6 @@ class Bootstrap
     public function endDOM()
     {
         return ' <script scr="' . DIR_ASSETS . DIR_JS . 'bootstrap.min.js"></script>
-        </body></html>';
+                </body></html>';
     }
 }

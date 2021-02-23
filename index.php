@@ -6,8 +6,11 @@ include('loader.php');
 $html = new Bootstrap('Accueil', NAME_APPLICATION);
 echo $html->startDOM();
 echo $html->startMain();
-?>
-<?php
+
+$tasks = new Todos();
+// var_dump($tasks->showTasks());
+
+
 ?>
 <!-- Form for addTodo -->
 <div class="container-fluid col-md-6">
@@ -19,17 +22,27 @@ echo $html->startMain();
         $form->addInput('content', TYPE_TEXTAREA, ['label' => 'Description', 'placeholder' => 'Description de la tâche', 'rows' => 2]);
         $form->setSubmit('Creer', ['class' => 'col-6']);
         echo $form->form();
-        // var_dump($_POST);
         ?>
     </div>
 </div>
 
 <div class="container">
-    <?php if (isset($_POST['title']) && isset($_POST['content'])) {
-        $card = new BootstrapCard();
-        echo $card->addCardHtml($_POST['title'], $_POST['content']);
-    }
-    ?>
+    <?php foreach ($tasks->showTasks() as $task) : ?>
+        <div class="card m-2">
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="card-title"><?= $task->title; ?></h5>
+                <?php
+                $form = new BootstrapForm('card', 'controller.php', METHOD_POST);
+                $form->addInput('checked ',  TYPE_CHECKBOX, ['label' => 'Fait']);
+                $form->setSubmit('Terminer', ['class' => 'btn-sm', 'color' => WARNING]);
+                echo $form->form(); ?>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><?= $task->content; ?></p>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
 </div>
 <?php
 // var_dump($form);

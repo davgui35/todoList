@@ -9,7 +9,7 @@ require(DIR_MODELS . 'Todos.php');
 require(DIR_UTILS . 'Bootstrap.php');
 require(DIR_UTILS . 'BootstrapForm.php');
 require(DIR_UTILS . 'BootstrapAlert.php');
-require(DIR_UTILS . 'BootstrapCard.php');
+
 
 require(DIR_UTILS . 'Alert.php');
 $Alert = new Alert; // Disponible partout dans toutes mes pages

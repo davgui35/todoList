@@ -1,9 +1,6 @@
 <?php
-class todos extends ORM
+class Todos extends ORM
 {
-    private $title;
-    private $description;
-
     public function __construct($id = null)
     {
         parent::__construct();
@@ -20,5 +17,12 @@ class todos extends ORM
         $this->addInsertFields('content', $content, PDO::PARAM_STR);
         $newId = $this->insert();
         $this->populate($newId);
+    }
+
+    public function showTasks()
+    {
+        $this->addOrder('id', 'DESC');
+        $tasks = $this->get('all');
+        return $tasks;
     }
 }

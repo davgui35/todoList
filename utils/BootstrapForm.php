@@ -11,7 +11,7 @@ define('TYPE_HIDDEN', 'hidden'); // Champ caché
 define('TYPE_SELECT', 'select'); // select
 define('TYPE_TEXTAREA', 'textarea'); // textarea
 define('TYPE_CHECKBOX', 'checkbox'); // checkbox
-define('TYPES', [TYPE_TEXT, TYPE_PASSWORD, TYPE_NUMBER, TYPE_HIDDEN, TYPE_EMAIL, TYPE_SELECT, TYPE_TEXTAREA]);
+define('TYPES', [TYPE_TEXT, TYPE_PASSWORD, TYPE_NUMBER, TYPE_HIDDEN, TYPE_EMAIL, TYPE_SELECT, TYPE_TEXTAREA, TYPE_CHECKBOX]);
 
 define('FORM_CONTROL', 'form-control');
 define('FORM_SELECT', 'form-select');
