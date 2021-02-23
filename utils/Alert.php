@@ -1,39 +1,53 @@
 <?php
-
+define('SESSION_ALERT', 'session_alert');
+//à utiliser : $_SESSION[SESSION_ALERT]
 class Alert
 {
-    //set l'alerte
-    public function alert($text, $options = [])
+    //Pas de constructeur
+
+    //Méthode qui set mon alert dans ma session
+    public function setAlert($text, $options = [])
     {
-        $_SESSION['SESSION_ALERT'] = [
+        $_SESSION[SESSION_ALERT] = [
             'text' => $text,
             'options' => $options
         ];
     }
 
-    //redirect l'alerte
-    public function redirect($link)
+    //Méthode qui set une alert de formulaire en session
+    public function setAlertForm($field, $text)
     {
-        header('Location: ' . $link);
-        exit();
+        $_SESSION[PROCESS_FORM_SESSION_HELP . $field] = $text;
     }
 
-    //Retourne HTML
-    public function getHtmlAlert()
+    //Methode qui redirige
+    public function redirectAlert($link)
+    {
+        header('Location: ' . $link);
+        exit;
+    }
+
+
+    //Methode qui renvoie l'HTML de l'alert
+    public function getAlertHTML()
     {
         if (!isset($_SESSION[SESSION_ALERT])) {
             return '';
         }
-
+        //Stocke dans la variable alert mon HTML de la class BOOTSTRAPALERT(instancie)
         $alert = new BootstrapAlert($_SESSION[SESSION_ALERT]['text'], $_SESSION[SESSION_ALERT]['options']);
 
         $this->unsetSession();
-
+        //Retourne mon HTML avec la méthode alert de BootstrapAlert
         return $alert->alert();
     }
 
-    public function unsetSession()
+
+    //Méthode qui vide la session
+
+    private function unsetSession()
     {
+        //Vide la session
         unset($_SESSION[SESSION_ALERT]);
     }
 }

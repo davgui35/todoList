@@ -1,20 +1,17 @@
 <?php
-//Nom application
-define('NAME_APPLICATION', 'TodosList');
-
+define('NAME_APPLICATION', 'todoliste');
 //Constantes BDD
 define('BDD_HOST', 'localhost');
 define('BDD_NAME', 'to_do_list');
-define('BDD_USER', 'root');
-define('BDD_PASS', '');
+define('BDD_USER', 'root'); //Identifiant de dev local
+define('BDD_PASS', ''); //Identifiant de dev local
 
-//Constantes techniques
+//Constante techniques (Chemin Dossier)
+define('DIR_APP', 'gamegram' . DIRECTORY_SEPARATOR);
 define('DIR_MODELS', 'models' . DIRECTORY_SEPARATOR);
-define('DIR_VIEWS', 'views' . DIRECTORY_SEPARATOR);
-define('DIR_CONTROLLERS', 'controllers' . DIRECTORY_SEPARATOR);
 define('DIR_UTILS', 'utils' . DIRECTORY_SEPARATOR);
+define('DIR_ELEMENTS', 'elements' . DIRECTORY_SEPARATOR);
 
-//Constantes des assets
 define('DIR_ASSETS', 'assets' . DIRECTORY_SEPARATOR);
 define('DIR_CSS', 'css' . DIRECTORY_SEPARATOR);
 define('DIR_JS', 'js' . DIRECTORY_SEPARATOR);

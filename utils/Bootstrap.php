@@ -1,5 +1,18 @@
 <?php
+// Constantes liées à Bootstrap
+define('WARNING', 'warning');
+define('SUCCESS', 'success');
+define('PRIMARY', 'primary');
+define('SECONDARY', 'secondary');
+define('DANGER', 'danger');
+define('INFO', 'info');
+define('LIGHT', 'light');
+define('DARK', 'dark');
 
+//Elements
+define('BTN', 'btn');
+define('BADGE', 'badge');
+define('BG', 'bg');
 class Bootstrap
 {
     private $title;

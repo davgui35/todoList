@@ -1,5 +1,5 @@
 <?php
-
+define('ALERT', 'alert');
 class BootstrapAlert
 {
     private $text;

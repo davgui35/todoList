@@ -1,4 +1,6 @@
 <?php
+// Démarrage de la session, pour utiliser $_SESSION
+session_start();
 include('loader.php');
 
 $html = new Bootstrap('Accueil', NAME_APPLICATION);
@@ -12,10 +14,10 @@ echo $html->startMain();
     <h1 class="text-center">Todoslist</h1>
     <div class="row text-center  bg-light rounded">
         <?php
-        $form = new BootstrapForm('todos', 'index.php', METHOD_POST);
+        $form = new BootstrapForm('todos', 'controller.php', METHOD_POST);
         $form->addInput('title', TYPE_TEXT, ['label' => 'Titre', 'placeholder' => 'Ajouter une tâche']);
         $form->addInput('content', TYPE_TEXTAREA, ['label' => 'Description', 'placeholder' => 'Description de la tâche', 'rows' => 2]);
-        $form->setSubmit('Valider', ['class' => 'col-6']);
+        $form->setSubmit('Creer', ['class' => 'col-6']);
         echo $form->form();
         // var_dump($_POST);
         ?>
