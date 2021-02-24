@@ -29,45 +29,46 @@ $tasks = new Todos();
 
 <div class="container-fluid">
     <h2 class="text-center">Tâches à faire</h2>
-    <div class="row">
-        <?php foreach ($tasks->showTasks() as $task) : ?>
-            <div class="col-sm-3">
-                <div class="card m-2">
-                    <div class="card-header">
-                        <h5 class="card-title"><?= $task->title; ?></h5>
+    <?php if (count($tasks->showTasks()) > 0) : ?>
+        <div class="row">
+            <?php foreach ($tasks->showTasks() as $task) : ?>
+                <div class="col-sm-3">
+                    <div class="card m-2">
+                        <div class="card-header">
+                            <h5 class="card-title"><?= $task->title; ?></h5>
+                        </div>
+                        <div class="card-body">
+                            <?php
+                            $form = new BootstrapForm('card', 'controller.php?id=' . $task->id . '', METHOD_POST);
+                            $form->addInput('id', TYPE_HIDDEN, ['value' => $task->id]);
+                            $form->addInput('title', TYPE_TEXT, ['label' => 'Titre à modifier', 'placeholder' => 'Ajouter une tâche', 'value' => $task->title]);
+                            $form->addInput('content', TYPE_TEXT, ['label' => 'Contenu à modifier', 'placeholder' => 'Description de la tâche', 'value' => $task->content]);
+                            $form->addInput('checked', TYPE_CHECKBOX, ['label' => 'Tâche effectuée ']);
+                            $form->setSubmit('Modifier', ['class' => 'btn-sm', 'color' => WARNING]);
+                            echo $form->form(); ?>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <?php
-                        $form = new BootstrapForm('card', 'controller.php?id=' . $task->id . '', METHOD_POST);
-                        $form->addInput('id', TYPE_HIDDEN, ['value' => $task->id]);
-                        $form->addInput('title', TYPE_TEXT, ['label' => 'Titre à modifier', 'placeholder' => 'Ajouter une tâche', 'value' => $task->title]);
-                        $form->addInput('content', TYPE_TEXT, ['label' => 'Contenu à modifier', 'placeholder' => 'Description de la tâche', 'value' => $task->content]);
-                        $form->addInput('checked', TYPE_CHECKBOX, ['label' => 'Tâche éffectuée ']);
-                        $form->setSubmit('Modifier', ['class' => 'btn-sm', 'color' => WARNING]);
-                        echo $form->form(); ?>
-                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div>
+<?php if (count($tasks->showTasksChecked()) > 0) : ?>
+    <div class="container-fluid bg-secondary rounded">
+        <h2 class="text-center">Tâches Terminées</h2>
+        <?php foreach ($tasks->showTasksChecked() as $taskChecked) : ?>
+            <div class="card m-2">
+                <div class="card-header">
+                    <?= $taskChecked->title; ?>
+                </div>
+                <div class="card-body d-flex justify-content-between">
+                    <h5 id="ckeck-task"><?= $taskChecked->content; ?></h5>
+                    <p><a href="controller.php?action=delete&id=<?= $taskChecked->id; ?>" class="btn btn-danger">Supprimer</a></p>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
-</div>
-
-<div class="container-fluid">
-    <h2 class="text-center bg-secondary rounded">Tâches Terminées</h2>
-    <?php foreach ($tasks->showTasksChecked() as $taskChecked) : ?>
-        <div class="card m-2 ">
-            <div class="card-header">
-                <?= $taskChecked->title; ?>
-            </div>
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <p id="ckeck-task"><?= $taskChecked->content; ?></p>
-                    <footer class="blockquote-footer">Cette tâche est <cite title="Source Title">terminée</cite></footer>
-                </blockquote>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
+<?php endif; ?>
 
 <?php
 // var_dump($form);

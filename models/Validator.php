@@ -35,6 +35,17 @@ class Validator
         $this->Orm = new Orm;
     }
 
+    public function validateNumeric($field)
+    {
+        if (!isset($this->data[$field])) {
+            die('Erreur [Val 003] Champ ' . $field . ' inconnu');
+        }
+
+        if (!is_numeric($this->data[$field])) {
+            $this->alert($field, 'Erreur type. Valeur numérique attendue');
+        }
+    }
+
     private function alert($field, $text)
     {
         if ($this->typeProcess == PROCESS_FORM) {

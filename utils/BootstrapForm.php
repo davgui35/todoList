@@ -72,7 +72,7 @@ class BootstrapForm
                 $input .= '<textarea class="' . FORM_CONTROL . '"   name="' . $name . '" id="' . $idName . '" rows="' . $rows . '"></textarea>';
                 break;
             case TYPE_CHECKBOX:
-                $input .= '<input class="form-check-input" name="' . $name . '" type="' . TYPE_CHECKBOX . '" id="' . $idName . '">';
+                $input .= '<input class="form-check-input mx-2" name="' . $name . '" type="' . TYPE_CHECKBOX . '" id="' . $idName . '">';
                 break;
             default:
                 if ($type !== TYPE_PASSWORD) {

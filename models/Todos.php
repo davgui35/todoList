@@ -46,4 +46,10 @@ class Todos extends ORM
         $tasks = $this->get('all');
         return $tasks;
     }
+
+    public function deleteTask($id)
+    {
+        $this->addWhereFields('id', $id, '=', PDO::PARAM_INT);
+        $this->delete();
+    }
 }

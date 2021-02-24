@@ -39,3 +39,21 @@ if (isset($_POST['modifier'])) {
     $Alert->setAlert('La tâche a été modifié', ['color' => SUCCESS]);
     $Alert->redirectAlert('index.php');
 }
+
+
+if (isset($_GET['action'])) {
+    var_dump($_GET);
+    extract($_GET);
+    $validator = new Validator($_GET, 'controller.php');
+    $validator->validateNumeric('id');
+    $data = $validator->getData();
+
+    if ($action == 'delete' && !empty($id)) {
+        $todo->deleteTask(
+            $data['id']
+        );
+    }
+
+    $Alert->setAlert('Tâches supprimées', ['color' => SUCCESS]);
+    $Alert->redirectAlert('index.php');
+}
