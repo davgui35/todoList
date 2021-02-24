@@ -19,9 +19,30 @@ class Todos extends ORM
         $this->populate($newId);
     }
 
+    public function updateCheck($datas, $id = null)
+    {
+        if ($id != null) {
+            $this->addWhereFields('id', $id, '=', PDO::PARAM_INT);
+        }
+        foreach ($datas as $data) {
+            $this->addUpdateFields($data['field'], $data['value']);
+        }
+        $idUpdate = $this->update();
+        $this->populate($idUpdate);
+    }
+
     public function showTasks()
     {
         $this->addOrder('id', 'DESC');
+        $this->addWhereFields('checked', '0');
+        $tasks = $this->get('all');
+        return $tasks;
+    }
+
+    public function showTasksChecked()
+    {
+        $this->addOrder('id', 'DESC');
+        $this->addWhereFields('checked', '1');
         $tasks = $this->get('all');
         return $tasks;
     }

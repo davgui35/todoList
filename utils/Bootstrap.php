@@ -35,6 +35,7 @@ class Bootstrap
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta name="description" content="' . $this->content . '">
             <link rel="stylesheet" href="' . DIR_ASSETS . DIR_CSS . 'boostrap.css" ?>
+            <link rel="stylesheet" href="' . DIR_ASSETS . DIR_CSS . 'main.css" ?>
             <title>' . NAME_APPLICATION . ' - ' . $this->title . '</title>
         </head>';
     }

@@ -15,6 +15,7 @@ $tasks = new Todos();
 <!-- Form for addTodo -->
 <div class="container-fluid col-md-6">
     <h1 class="text-center">Todoslist</h1>
+    <p class="text"><?= $Alert->getAlertHTML(); ?></p>
     <div class="row text-center  bg-light rounded">
         <?php
         $form = new BootstrapForm('todos', 'controller.php', METHOD_POST);
@@ -26,24 +27,48 @@ $tasks = new Todos();
     </div>
 </div>
 
-<div class="container">
-    <?php foreach ($tasks->showTasks() as $task) : ?>
-        <div class="card m-2">
-            <div class="card-header d-flex justify-content-between">
-                <h5 class="card-title"><?= $task->title; ?></h5>
-                <?php
-                $form = new BootstrapForm('card', 'controller.php', METHOD_POST);
-                $form->addInput('checked ',  TYPE_CHECKBOX, ['label' => 'Fait']);
-                $form->setSubmit('Terminer', ['class' => 'btn-sm', 'color' => WARNING]);
-                echo $form->form(); ?>
+<div class="container-fluid">
+    <h2 class="text-center">Tâches à faire</h2>
+    <div class="row">
+        <?php foreach ($tasks->showTasks() as $task) : ?>
+            <div class="col-sm-3">
+                <div class="card m-2">
+                    <div class="card-header">
+                        <h5 class="card-title"><?= $task->title; ?></h5>
+                    </div>
+                    <div class="card-body">
+                        <?php
+                        $form = new BootstrapForm('card', 'controller.php?id=' . $task->id . '', METHOD_POST);
+                        $form->addInput('id', TYPE_HIDDEN, ['value' => $task->id]);
+                        $form->addInput('title', TYPE_TEXT, ['label' => 'Titre à modifier', 'placeholder' => 'Ajouter une tâche', 'value' => $task->title]);
+                        $form->addInput('content', TYPE_TEXT, ['label' => 'Contenu à modifier', 'placeholder' => 'Description de la tâche', 'value' => $task->content]);
+                        $form->addInput('checked', TYPE_CHECKBOX, ['label' => 'Tâche éffectuée ']);
+                        $form->setSubmit('Modifier', ['class' => 'btn-sm', 'color' => WARNING]);
+                        echo $form->form(); ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <h2 class="text-center bg-secondary rounded">Tâches Terminées</h2>
+    <?php foreach ($tasks->showTasksChecked() as $taskChecked) : ?>
+        <div class="card m-2 ">
+            <div class="card-header">
+                <?= $taskChecked->title; ?>
             </div>
             <div class="card-body">
-                <p class="card-text"><?= $task->content; ?></p>
+                <blockquote class="blockquote mb-0">
+                    <p id="ckeck-task"><?= $taskChecked->content; ?></p>
+                    <footer class="blockquote-footer">Cette tâche est <cite title="Source Title">terminée</cite></footer>
+                </blockquote>
             </div>
         </div>
     <?php endforeach; ?>
 </div>
-</div>
+
 <?php
 // var_dump($form);
 echo $html->endMain();
